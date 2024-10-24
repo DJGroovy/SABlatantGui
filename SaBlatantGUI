@@ -1,0 +1,131 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+OrionLib:MakeNotification({
+	Name = "Hi rei probably made this",
+	Content = "he didnt he's a skid i hate you keep skidding skid skid skidder",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+
+local Window = OrionLib:MakeWindow({Name = "Shalom! Stands! Awak!", HidePremium = false, SaveConfig = true, ConfigFolder = "Orion"})
+
+--Player Tab--
+
+local PlayerTab = Window:MakeTab({
+	Name = "Stand Awakeando",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local PlayerSection = PlayerTab:AddSection({
+	Name = "Sa"
+})
+
+
+PlayerSection:AddButton({
+	Name = "TS Movement [Click once then press O to move in ts]",
+	Callback = function(Value)
+local function Dothething()
+    local player = game:GetService("Players").LocalPlayer
+    if player and player.Character then
+        local parts = {}
+        for i, v in ipairs(player.Character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                table.insert(parts, v)
+            end
+        end
+
+        for i, part in ipairs(parts) do
+            game:GetService("ReplicatedStorage"):WaitForChild("Anchor"):FireServer(part, false)
+        end
+
+        local stand = player.Character:FindFirstChild("Stand")
+        if stand then
+            for i, v in ipairs(stand:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    game:GetService("ReplicatedStorage"):WaitForChild("Anchor"):FireServer(v, false)
+                end
+            end
+        end
+    end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.O then
+        Dothething()
+    end
+end)
+	end    
+})
+
+PlayerSection:AddButton({
+	Name = "Hierophant Green Spam [Press K with hierophant green]",
+	Callback = function(Value)
+wait(1)
+game.UserInputService.InputBegan:Connect(function(ip, gpe)
+    if not gpe then
+        if ip.KeyCode == Enum.KeyCode.K then
+        for i = 1,25 do
+            local args = {
+             [1] = "Alternate",
+             [2] = "EmeraldProjectile2",
+             [3] = false,
+            [4] = game.Players.LocalPlayer:GetMouse().Hit
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+        end
+        end
+    end
+end)
+	end    
+})
+
+
+PlayerSection:AddButton({
+	Name = "TWGH/VTW Knife Spam [ts, spam B to spam knives]",
+	Callback = function(Value)
+wait(1)
+game.UserInputService.InputBegan:Connect(function(ip, gpe)
+    if not gpe then
+        if ip.KeyCode == Enum.KeyCode.B then
+        for i = 1,5 do
+            local args = {
+            [1] = "Alternate",
+            [2] = "super",
+            [3] = game.Players.LocalPlayer:GetMouse().Hit
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+        end
+        end
+    end
+end)
+	end    
+})
+
+
+
+--Player Tab End--
+
+--Settings Tab--
+
+local SettingsTab = Window:MakeTab({
+	Name = "Settings",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local SettingsSection = SettingsTab:AddSection({
+	Name = "Settings"
+})
+
+SettingsSection:AddButton({
+	Name = "Destroy UI",
+	Callback = function()
+        OrionLib:Destroy()
+  	end    
+})
+
+--Settings End--
+
+OrionLib:Init() --UI Lib End
