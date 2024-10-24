@@ -119,7 +119,7 @@ end)
 
 
 PlayerSection:AddButton({
-	Name = "TWGH/VTW Knife Spam [ts, spam B to spam knives]",
+	Name = "TWGH/VTW Knife Spam [ts, spam R to spam knives]",
 	Callback = function(Value)
 wait(0.01)
 
