@@ -88,8 +88,8 @@ PlayerSection:AddButton({
 wait(1)
 game.UserInputService.InputBegan:Connect(function(ip, gpe)
     if not gpe then
-        if ip.KeyCode == Enum.KeyCode.B then
-        for i = 1,5 do
+        if ip.KeyCode == Enum.KeyCode.L then
+        for i = 1,1 do
             local args = {
             [1] = "Alternate",
             [2] = "super",
