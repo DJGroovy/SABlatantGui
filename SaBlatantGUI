@@ -85,21 +85,33 @@ end)
 PlayerSection:AddButton({
 	Name = "TWGH/VTW Knife Spam [ts, spam B to spam knives]",
 	Callback = function(Value)
-wait(1)
+wait(0.01)
+
 game.UserInputService.InputBegan:Connect(function(ip, gpe)
-    if not gpe then
-        if ip.KeyCode == Enum.KeyCode.L then
-        for i = 1,1 do
-            local args = {
-            [1] = "Alternate",
-            [2] = "super",
-            [3] = game.Players.LocalPlayer:GetMouse().Hit
-            }
-            game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+    if not gpe and ip.KeyCode == Enum.KeyCode.R then
+        local players = game:GetService("Players")
+        local localPlayer = players.LocalPlayer
+        local closestTorso, closestDistance = nil, math.huge
+
+        for _, player in pairs(players:GetPlayers()) do
+            if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                local torso = player.Character.HumanoidRootPart
+                local distance = (torso.Position - localPlayer.Character.HumanoidRootPart.Position).Magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestTorso = torso
+                end
+            end
         end
+
+        if closestTorso then
+            game:GetService("ReplicatedStorage").Main.Input:FireServer("Alternate", "super", true)
+wait(0.01)
+            game:GetService("ReplicatedStorage").Main.Input:FireServer("Alternate", "Knife", closestTorso.Position)
         end
     end
 end)
+
 	end    
 })
 
